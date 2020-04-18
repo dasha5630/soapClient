@@ -1,0 +1,39 @@
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:s="http://www.w3.org/2001/XMLSchema"
+               xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+               version="1.0"
+>
+  <jaxb:bindings schemaLocation="service.wsdl">
+    <jaxb:bindings node="//s:complexType[@name='RTripStageItem']//s:element[@name='_SD']">
+      <jaxb:factoryMethod name="RTripStageItemSD1"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//s:complexType[@name='RTripStageItem']//s:element[@name='SD']">
+      <jaxb:factoryMethod name="RTripStageItemSD2"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//s:complexType[@name='RTrip1C']//s:element[@name='_SD']">
+      <jaxb:factoryMethod name="RTrip1CSD1"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//s:complexType[@name='RTrip1C']//s:element[@name='SD']">
+      <jaxb:factoryMethod name="RTrip1CED2"/>
+    </jaxb:bindings>
+
+    <jaxb:bindings node="//s:complexType[@name='RTripStageItem']//s:element[@name='_ED']">
+      <jaxb:factoryMethod name="RTripStageItemED1"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//s:complexType[@name='RTripStageItem']//s:element[@name='ED']">
+      <jaxb:factoryMethod name="RTripStageItemED2"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//s:complexType[@name='RTrip1C']//s:element[@name='_ED']">
+      <jaxb:factoryMethod name="RTrip1CED1"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//s:complexType[@name='RTrip1C']//s:element[@name='ED']">
+      <jaxb:factoryMethod name="RTrip1CEE2"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//s:element[@name='_LastCoords']">
+      <jaxb:factoryMethod name="LastCoords1"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//s:element[@name='_LastData']">
+      <jaxb:factoryMethod name="LastData1"/>
+    </jaxb:bindings>
+  </jaxb:bindings>
+</jaxb:bindings>

@@ -1,0 +1,3634 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+            <s:import namespace="http://microsoft.com/wsdl/types/"/>
+            <s:element name="Test">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="testString" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="TestResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="TestResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="Test2">
+                <s:complexType/>
+            </s:element>
+            <s:element name="Test2Response">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="Test2Result" type="tns:RPropertyTareTable"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RPropertyTareTable">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Approximation" type="tns:RTareTableApproximation"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="DependsOnSupply" type="s:boolean"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRPropertyTareTableItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:simpleType name="RTareTableApproximation">
+                <s:restriction base="s:string">
+                    <s:enumeration value="Linear"/>
+                    <s:enumeration value="Polynomial"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:complexType name="ArrayOfRPropertyTareTableItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RPropertyTareTableItem" nillable="true" type="tns:RPropertyTareTableItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RPropertyTareTableItem">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Input" nillable="true" type="s:double"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Output" nillable="true" type="s:double"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Supply" nillable="true" type="s:double"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="UserDelete">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="userIDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfGuid">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="guid" type="s1:guid"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="UserDeleteResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="UserDeleteResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumRoles">
+                <s:complexType/>
+            </s:element>
+            <s:element name="EnumRolesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumRolesResult" type="tns:ArrayOfRRole"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfRRole">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RRole" nillable="true" type="tns:RRole"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RRole">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="s:boolean"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="EnumUsers">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumUsersResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumUsersResult" type="tns:ArrayOfRUser"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfRUser">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RUser" nillable="true" type="tns:RUser"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RUser">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="State" type="s:boolean"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="IDRoles" type="tns:ArrayOfGuid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="IDGlobalRoles" type="tns:ArrayOfGuid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Mail" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ICQ" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Jabber" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Skype" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Telegram" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Facebook" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Viber" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Whatsapp" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Restrictions" type="tns:RUserRestriction"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RUserRestriction">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="AllowedCars" type="tns:ArrayOfGuid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="AllowedCarGroups" type="tns:ArrayOfGuid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="EnabledFrom" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="EnabledTo" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CanViewFrom" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CanViewTo" nillable="true" type="s:dateTime"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="EnumUsersAll">
+                <s:complexType/>
+            </s:element>
+            <s:element name="EnumUsersAllResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumUsersAllResult" type="tns:ArrayOfRUser"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="OTLCreate">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="IDUSER" type="s1:guid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="carOrGroupID" type="s1:guid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="objectSubgroups" type="s:boolean"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="showTrack" type="s:boolean"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="showStages" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="geoOrGroupFilterID" nillable="true" type="s1:guid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="geoFilterSubgroups" type="s:boolean"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="geoOrGroupShowID" nillable="true" type="s1:guid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="geoShowSubgroups" type="s:boolean"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="geoShowIcons" type="s:boolean"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="geoShowLabels" type="s:boolean"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" nillable="true" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" nillable="true" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ViewSD" nillable="true" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ViewED" nillable="true" type="s:dateTime"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfString">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="OTLCreateResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="OTLCreateResult" type="s1:guid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="OTLDelete">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ID" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="OTLDeleteResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="OTLDeleteResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="UserUpdate">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="item" type="tns:RUser"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="UserUpdateResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="UserUpdateResult" type="tns:RUser"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumDevices">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumDevicesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumDevicesResult" type="tns:REnumDevices"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="REnumDevices">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfRGroupItem"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRDeviceItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRGroupItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RGroupItem" nillable="true" type="tns:RGroupItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RGroupItem">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ParentID" nillable="true" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RDeviceItem">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:RGroupItem">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="Serial" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Allowed" type="s:boolean"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfRProperty"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="FixedLocation" type="tns:RPoint"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="ImageColored" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="TripSplitters" type="tns:ArrayOfRTripSplitter"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IsAreaEnabled" type="s:boolean"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfRProperty">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RProperty" nillable="true" type="tns:RProperty"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RProperty">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Inherited" type="s:boolean"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:RPropType"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Value"/>
+                </s:sequence>
+            </s:complexType>
+            <s:simpleType name="RPropType">
+                <s:restriction base="s:string">
+                    <s:enumeration value="String"/>
+                    <s:enumeration value="Number"/>
+                    <s:enumeration value="Date"/>
+                    <s:enumeration value="TareTable"/>
+                    <s:enumeration value="Time"/>
+                    <s:enumeration value="Memo"/>
+                    <s:enumeration value="Color"/>
+                    <s:enumeration value="Bool"/>
+                    <s:enumeration value="Radio"/>
+                    <s:enumeration value="Image"/>
+                    <s:enumeration value="File"/>
+                    <s:enumeration value="ProgressBar"/>
+                    <s:enumeration value="Combobox"/>
+                    <s:enumeration value="FileLink"/>
+                    <s:enumeration value="Device"/>
+                    <s:enumeration value="GeoFence"/>
+                    <s:enumeration value="Driver"/>
+                    <s:enumeration value="Implement"/>
+                    <s:enumeration value="Task"/>
+                    <s:enumeration value="CheckDays"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:complexType name="RPoint">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Lat" type="s:double"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Lng" type="s:double"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripSplitter">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripSplitter" nillable="true" type="tns:RTripSplitter"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTripSplitter">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRDeviceItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RDeviceItem" nillable="true" type="tns:RDeviceItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="EnumDrivers">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="REnumDrivers">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfRGroupItem"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRDriverItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRDriverItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RDriverItem" nillable="true" type="tns:RDriverItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RDriverItem">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:RGroupItem">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="DriverID" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfRProperty"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="EnumDriversResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumDriversResult" type="tns:REnumDrivers"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumGeoFences">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="REnumGeofences">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfRGroupItem"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRGeofenceItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRGeofenceItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RGeofenceItem" nillable="true" type="tns:RGeofenceItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RGeofenceItem">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:RGroupItem">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfRProperty"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="EnumGeoFencesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumGeoFencesResult" type="tns:REnumGeofences"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumImplements">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="REnumImplements">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfRGroupItem"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRImplementItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRImplementItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RImplementItem" nillable="true" type="tns:RImplementItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RImplementItem">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:RGroupItem">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="ImplementID" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfRProperty"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="EnumImplementsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumImplementsResult" type="tns:REnumImplements"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumParameters">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RParameters">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="FinalParams" type="tns:ArrayOfRParameter"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OnlineParams" type="tns:ArrayOfRParameter"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="TripsParams" type="tns:ArrayOfRParameter"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRParameter">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RParameter" nillable="true" type="tns:RParameter"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RParameter">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:RBaseParameterValue">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="RBaseParameterValue">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Caption" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ReturnType" type="tns:ReturnType"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ValueType" type="tns:AddValueType"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Unit" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Format" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:ArrayOfRParameterStatus"/>
+                </s:sequence>
+            </s:complexType>
+            <s:simpleType name="ReturnType">
+                <s:restriction base="s:string">
+                    <s:enumeration value="Boolean"/>
+                    <s:enumeration value="Byte"/>
+                    <s:enumeration value="Int32"/>
+                    <s:enumeration value="Int64"/>
+                    <s:enumeration value="Double"/>
+                    <s:enumeration value="DateTime"/>
+                    <s:enumeration value="TimeSpan"/>
+                    <s:enumeration value="Guid"/>
+                    <s:enumeration value="Guid4"/>
+                    <s:enumeration value="String"/>
+                    <s:enumeration value="Image"/>
+                    <s:enumeration value="Coordinates"/>
+                    <s:enumeration value="Location"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:simpleType name="AddValueType">
+                <s:restriction base="s:string">
+                    <s:enumeration value="Curr"/>
+                    <s:enumeration value="First"/>
+                    <s:enumeration value="Last"/>
+                    <s:enumeration value="Diff"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:complexType name="ArrayOfRParameterStatus">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RParameterStatus" nillable="true" type="tns:RParameterStatus"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RParameterStatus">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Caption" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ReferenceID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ReferenceIDs" type="tns:ArrayOfGuid"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRParameters">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RParameters" nillable="true" type="tns:RParameters"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="EnumParametersResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumParametersResult" type="tns:ArrayOfRParameters"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumSchemas">
+                <s:complexType/>
+            </s:element>
+            <s:complexType name="RSchema">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRSchema">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RSchema" nillable="true" type="tns:RSchema"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="EnumSchemasResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumSchemasResult" type="tns:ArrayOfRSchema"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumStatuses">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RDeviceStatus">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ImageName" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRDeviceStatus">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RDeviceStatus" nillable="true" type="tns:RDeviceStatus"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="EnumStatusesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumStatusesResult" type="tns:ArrayOfRDeviceStatus"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDataRanges">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RDataRange">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Serial" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="LastModified" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Files" type="tns:ArrayOfRDataRangeItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRDataRangeItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RDataRangeItem" nillable="true" type="tns:RDataRangeItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RDataRangeItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="File" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="LastModified" type="s:dateTime"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRDataRange">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RDataRange" nillable="true" type="tns:RDataRange"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetDataRangesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetDataRangesResult" type="tns:ArrayOfRDataRange"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDevicesInfo">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RDeviceInfo">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Stages" type="tns:ArrayOfRDeviceStage"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRDeviceStage">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RDeviceStage" nillable="true" type="tns:RDeviceStage"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RDeviceStage">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Parameter" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="IsGroup" type="s:boolean"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Caption" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetDevicesInfoResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetDevicesInfoResult" type="tns:RDeviceInfo"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetGeofences">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="IDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RGeoFenceBase">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ParentID" nillable="true" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="IsPolygon" type="s:boolean"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="R" type="s:double"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Lat" type="tns:ArrayOfDouble"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Lng" type="tns:ArrayOfDouble"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Holes" type="tns:ArrayOfRGeoFenceHole"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfDouble">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="double" type="s:double"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRGeoFenceHole">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RGeoFenceHole" nillable="true" type="tns:RGeoFenceHole"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RGeoFenceHole">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Lat" type="tns:ArrayOfDouble"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Lng" type="tns:ArrayOfDouble"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RGeoFence">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:RGeoFenceBase">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="ImageName" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ImageHue" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Fill" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Line" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="LineWidth" type="s:int"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfRGeoFence">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RGeoFence" nillable="true" type="tns:RGeoFence"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetGeofencesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetGeofencesResult" type="tns:ArrayOfRGeoFence"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetOnlineInfo">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="finalParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="mchp" type="s:boolean"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ROnlineInfo1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LastPosition" type="tns:RPoint"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="DT" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="State" type="tns:ROnlineState"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Speed" type="s:double"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Course" type="s:double"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Final" type="tns:ArrayOfRObjectValue1C"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LastCoords"/>
+                </s:sequence>
+            </s:complexType>
+            <s:simpleType name="ROnlineState">
+                <s:restriction base="s:string">
+                    <s:enumeration value="Park"/>
+                    <s:enumeration value="Move"/>
+                    <s:enumeration value="Flight"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:complexType name="ArrayOfRObjectValue1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RObjectValue1C" nillable="true" type="tns:RObjectValue1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RObjectValue1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Value"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfROnlineInfo1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="ROnlineInfo1C" nillable="true" type="tns:ROnlineInfo1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetOnlineInfoResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetOnlineInfoResult" type="tns:ArrayOfROnlineInfo1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetOnlineInfoAll">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="finalParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="mchp" type="s:boolean"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetOnlineInfoAllResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetOnlineInfoAllResult" type="tns:ArrayOfROnlineInfo1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetRoute">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="router" type="tns:RouterType"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="waypoints" type="tns:ArrayOfRPoint"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:simpleType name="RouterType">
+                <s:restriction base="s:string">
+                    <s:enumeration value="Google"/>
+                    <s:enumeration value="Progorod"/>
+                    <s:enumeration value="GraphHopper"/>
+                    <s:enumeration value="OSRM"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:complexType name="ArrayOfRPoint">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RPoint" nillable="true" type="tns:RPoint"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RRouteSegment">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Points" type="tns:ArrayOfRPoint"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Distance" type="s:double"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Duration" nillable="true" type="tns:TimeSpan"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="AddressFrom" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="AddressTo" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="TimeSpan"/>
+            <s:complexType name="ArrayOfRRouteSegment">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RRouteSegment" nillable="true" type="tns:RRouteSegment"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetRouteResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetRouteResult" type="tns:ArrayOfRRouteSegment"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetStage">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="stageName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RTripStage1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Params" type="tns:ArrayOfString"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ParamTypes" type="tns:ArrayOfReturnType"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRTripStageItem"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:ArrayOfRParameterStatus"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Total" type="tns:ArrayOfRObjectValue1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfReturnType">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnType" type="tns:ReturnType"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripStageItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripStageItem" nillable="true" type="tns:RTripStageItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTripStageItem">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="_SD" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="_ED" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Index" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="SD"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ED"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="StatusID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="StatusIDs" type="tns:ArrayOfGuid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="StartPoint" type="tns:RPoint"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="EndPoint" type="tns:RPoint"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Caption" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfAnyType"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfAnyType">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripStage1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripStage1C" nillable="true" type="tns:RTripStage1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetStageResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetStageResult" type="tns:ArrayOfRTripStage1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTrack">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RTrackInfo1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfRTrackInfo"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTrackInfo">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTrackInfo" nillable="true" type="tns:RTrackInfo"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTrackInfo">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Index" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DT" type="tns:ArrayOfDateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Speed" type="tns:ArrayOfDouble"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Lat" type="tns:ArrayOfDouble"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Lng" type="tns:ArrayOfDouble"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Photos" type="tns:ArrayOfRTrackInfoPhoto"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfDateTime">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="dateTime" type="s:dateTime"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTrackInfoPhoto">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTrackInfoPhoto" nillable="true" type="tns:RTrackInfoPhoto"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTrackInfoPhoto">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Index" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTrackInfo1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTrackInfo1C" nillable="true" type="tns:RTrackInfo1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetTrackResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTrackResult" type="tns:ArrayOfRTrackInfo1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="MRuleDelete">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="IDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="MRuleDeleteResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="MRuleDeleteResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="MRuleUpdate">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="rules" type="tns:ArrayOfRMonitoringRule1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfRMonitoringRule1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RMonitoringRule1C" nillable="true" type="tns:RMonitoringRule1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RMonitoringRule1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Parameter" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ParameterType" type="tns:RParameterType"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:RMonitoringRuleCondition"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ValueType" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ValueTo" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ValueToType" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="TargetObject" type="s1:guid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="State" type="s:boolean"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Severity" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="IgnorePeriod" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="MinDuration" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Templates" type="tns:ArrayOfMRuleStringPair1C"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Subjects" type="tns:ArrayOfMRuleStringPair1C"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="PutToJournal" type="s:boolean"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ChangeStateRuleID" nillable="true" type="s1:guid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ChangeStateRuleTo" nillable="true" type="s:boolean"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="NotifyUsers" type="tns:ArrayOfMRuleNotifyUser1C"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="NotifyTargets" type="tns:ArrayOfMRuleNotifyTarget1C"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Schedule" type="tns:ArrayOfMRuleScheduleDay1C"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Updated" type="s:dateTime"/>
+                </s:sequence>
+            </s:complexType>
+            <s:simpleType name="RParameterType">
+                <s:restriction base="s:string">
+                    <s:enumeration value="Tabular"/>
+                    <s:enumeration value="Final"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:simpleType name="RMonitoringRuleCondition">
+                <s:restriction base="s:string">
+                    <s:enumeration value="LessThan"/>
+                    <s:enumeration value="Equal"/>
+                    <s:enumeration value="NotEqual"/>
+                    <s:enumeration value="MoreThan"/>
+                    <s:enumeration value="Range"/>
+                    <s:enumeration value="List"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:complexType name="ArrayOfMRuleStringPair1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="MRuleStringPair1C" nillable="true" type="tns:MRuleStringPair1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="MRuleStringPair1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfMRuleNotifyUser1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="MRuleNotifyUser1C" nillable="true" type="tns:MRuleNotifyUser1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="MRuleNotifyUser1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="NotifyType" type="tns:RMonitoringNotifyType"/>
+                </s:sequence>
+            </s:complexType>
+            <s:simpleType name="RMonitoringNotifyType">
+                <s:list>
+                    <s:simpleType>
+                        <s:restriction base="s:string">
+                            <s:enumeration value="Popup"/>
+                            <s:enumeration value="Mail"/>
+                            <s:enumeration value="ICQ"/>
+                            <s:enumeration value="Jabber"/>
+                            <s:enumeration value="Skype"/>
+                            <s:enumeration value="SMS"/>
+                            <s:enumeration value="Telegram"/>
+                            <s:enumeration value="WebService"/>
+                        </s:restriction>
+                    </s:simpleType>
+                </s:list>
+            </s:simpleType>
+            <s:complexType name="ArrayOfMRuleNotifyTarget1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="MRuleNotifyTarget1C" nillable="true" type="tns:MRuleNotifyTarget1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="MRuleNotifyTarget1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:RMonitoringNotifyItem"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="NotifyType" type="tns:RMonitoringNotifyType"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RMonitoringNotifyItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Target" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfMRuleScheduleDay1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="MRuleScheduleDay1C" nillable="true" type="tns:MRuleScheduleDay1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="MRuleScheduleDay1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Day" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Hours" type="s:int"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="MRuleUpdateResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="MRuleUpdateResult" type="tns:ArrayOfRMonitoringRule1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetNotes">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RNote1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRNote"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRNote">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RNote" nillable="true" type="tns:RNote"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RNote">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="UID" type="s1:guid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Stage" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="StageCaption" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="State" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Point" type="tns:RPoint"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Severity" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRNote1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RNote1C" nillable="true" type="tns:RNote1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetNotesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetNotesResult" type="tns:ArrayOfRNote1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RProperties1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfRProperty"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRProperties1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RProperties1C" nillable="true" type="tns:RProperties1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetPropertiesResult" type="tns:ArrayOfRProperties1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetGFProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="geofenceIDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetGFPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetGFPropertiesResult" type="tns:ArrayOfRProperties1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDriverProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="driverIDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDriverPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetDriverPropertiesResult" type="tns:ArrayOfRProperties1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetImplementProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="implementIDs" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetImplementPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetImplementPropertiesResult" type="tns:ArrayOfRProperties1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetProperty">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyName" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RPropertyItem1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Value"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRPropertyItem1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RPropertyItem1C" nillable="true" type="tns:RPropertyItem1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetPropertyResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetPropertyResult" type="tns:ArrayOfRPropertyItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetGFProperty">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="geofenceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyName" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetGFPropertyResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetGFPropertyResult" type="tns:ArrayOfRPropertyItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDriverProperty">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="driverIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyName" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDriverPropertyResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetDriverPropertyResult" type="tns:ArrayOfRPropertyItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetImplementProperty">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="implementIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyName" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetImplementPropertyResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetImplementPropertyResult" type="tns:ArrayOfRPropertyItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="IDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="properties" type="tns:ArrayOfRPropertySetItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfRPropertySetItem1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RPropertySetItem1C" nillable="true" type="tns:RPropertySetItem1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RPropertySetItem1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Value"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="SetPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SetPropertiesResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetGFProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="IDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="properties" type="tns:ArrayOfRPropertySetItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetGFPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SetGFPropertiesResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetDriverProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="IDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="properties" type="tns:ArrayOfRPropertySetItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetDriverPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SetDriverPropertiesResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetImplementProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="IDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="properties" type="tns:ArrayOfRPropertySetItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetImplementPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SetImplementPropertiesResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetProperty">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyValues" type="tns:ArrayOfRPropertyItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetPropertyResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SetPropertyResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetGFProperty">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyValues" type="tns:ArrayOfRPropertyItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetGFPropertyResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SetGFPropertyResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetDriverProperty">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyValues" type="tns:ArrayOfRPropertyItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetDriverPropertyResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SetDriverPropertyResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetImplementProperty">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="propertyValues" type="tns:ArrayOfRPropertyItem1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetImplementPropertyResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SetImplementPropertyResult" type="tns:ArrayOfGuid"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumReports">
+                <s:complexType/>
+            </s:element>
+            <s:element name="EnumReportsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumReportsResult" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumReportSchedules">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RReportScheduleItem">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Reports" type="tns:ArrayOfString"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="SplitToTrips" type="s:boolean"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="PeriodType" type="tns:RSchedulePeriodType"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="From" type="tns:TimeSpan"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="To" type="tns:TimeSpan"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="OutFormat" type="tns:RScheduleOutFormat"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="PackToZip" type="s:boolean"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="PackToZipPassword" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="StartFrom" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="TargetUsers" type="tns:ArrayOfGuid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="TargetMails" type="tns:ArrayOfString"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="SaveToDB" type="s:boolean"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ValidUntil" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="MailSubject" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="State" type="s:boolean"/>
+                </s:sequence>
+            </s:complexType>
+            <s:simpleType name="RSchedulePeriodType">
+                <s:restriction base="s:string">
+                    <s:enumeration value="UserDefined"/>
+                    <s:enumeration value="SinceStartHour"/>
+                    <s:enumeration value="SinceStartDay"/>
+                    <s:enumeration value="SinceStartWeek"/>
+                    <s:enumeration value="SinceStartMonth"/>
+                    <s:enumeration value="LastHour"/>
+                    <s:enumeration value="LastDay"/>
+                    <s:enumeration value="LastWeek"/>
+                    <s:enumeration value="LastMonth"/>
+                    <s:enumeration value="PrevHour"/>
+                    <s:enumeration value="PrevDay"/>
+                    <s:enumeration value="PrevWeek"/>
+                    <s:enumeration value="PrevMonth"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:simpleType name="RScheduleOutFormat">
+                <s:restriction base="s:string">
+                    <s:enumeration value="HTML"/>
+                    <s:enumeration value="PDF"/>
+                    <s:enumeration value="Excel2007"/>
+                    <s:enumeration value="Word2007"/>
+                    <s:enumeration value="RTF"/>
+                    <s:enumeration value="XPS"/>
+                    <s:enumeration value="ODS"/>
+                    <s:enumeration value="ODT"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:complexType name="ArrayOfRReportScheduleItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RReportScheduleItem" nillable="true" type="tns:RReportScheduleItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="EnumReportSchedulesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumReportSchedulesResult" type="tns:ArrayOfRReportScheduleItem"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetReports">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="reportNames" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="splitToTrips" type="s:boolean"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="format" type="tns:ReportFormat"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="compress" type="s:boolean"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="combine" type="s:boolean"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:simpleType name="ReportFormat">
+                <s:restriction base="s:string">
+                    <s:enumeration value="PDF"/>
+                    <s:enumeration value="Excel2007"/>
+                    <s:enumeration value="Word2007"/>
+                    <s:enumeration value="RTF"/>
+                    <s:enumeration value="XPS"/>
+                    <s:enumeration value="ODS"/>
+                    <s:enumeration value="ODT"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:complexType name="GetReportResult1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:base64Binary"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfGetReportResult1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="GetReportResult1C" nillable="true" type="tns:GetReportResult1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetReportsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetReportsResult" type="tns:ArrayOfGetReportResult1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetReport">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="reportName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="splitToTrips" type="s:boolean"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="format" type="tns:ReportFormat"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetReportResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetReportResult" type="s:base64Binary"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="EnumTasks">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="at" nillable="true" type="s:dateTime"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RTaskInfo">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="CurrentTaskID" nillable="true" type="s1:guid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CurrentTaskStart" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="CurrentTaskEnd" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="AllTasks" type="tns:ArrayOfRTask"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTask">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTask" nillable="true" type="tns:RTask"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTask">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="StrictOrder" type="s:boolean"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="GeofencesTime" nillable="true" type="tns:TimeSpan"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Geofences" type="tns:ArrayOfRTaskGeofence"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTaskGeofence">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTaskGeofence" nillable="true" type="tns:RTaskGeofence"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTaskGeofence">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ArriveST" nillable="true" type="tns:TimeSpan"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ArriveET" nillable="true" type="tns:TimeSpan"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="DepartureST" nillable="true" type="tns:TimeSpan"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="DepartureET" nillable="true" type="tns:TimeSpan"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTaskInfo1C">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:RTaskInfo">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTaskInfo1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTaskInfo1C" nillable="true" type="tns:RTaskInfo1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="EnumTasksResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="EnumTasksResult" type="tns:ArrayOfRTaskInfo1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripItems">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RTripItemContainer">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Params" type="tns:ArrayOfString"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ParamTypes" type="tns:ArrayOfReturnType"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRTripItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripItem" nillable="true" type="tns:RTripItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTripItem">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="TripIndex" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Stage" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DT"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Duration"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Caption" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="StatusID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfAnyType"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripItemContainer">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripItemContainer" nillable="true" type="tns:RTripItemContainer"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetTripItemsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripItemsResult" type="tns:ArrayOfRTripItemContainer"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTrips">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RTrips1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="_LastCoords" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="_LastData" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Serial" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="VRN" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Trips" type="tns:ArrayOfRTrip1C"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Total" type="tns:ArrayOfRObjectValue1C"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LastPosition" type="tns:RPoint"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LastCoords"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LastData"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTrip1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTrip1C" nillable="true" type="tns:RTrip1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTrip1C">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="_SD" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="_ED" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Index" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="SD"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ED"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="PointStart" type="tns:RPoint"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="PointEnd" type="tns:RPoint"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Stages" type="tns:ArrayOfRTripStage1C"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Total" type="tns:ArrayOfRObjectValue1C"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Areas" type="tns:ArrayOfRTripArea"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripArea">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripArea" nillable="true" type="tns:RTripArea"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTripArea">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ColorR" type="s:unsignedByte"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ColorG" type="s:unsignedByte"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ColorB" type="s:unsignedByte"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Polygons" type="tns:ArrayOfArrayOfArrayOfDouble"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfArrayOfArrayOfDouble">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfArrayOfDouble" nillable="true" type="tns:ArrayOfArrayOfDouble"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfArrayOfDouble">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfDouble" nillable="true" type="tns:ArrayOfDouble"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTrips1C">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTrips1C" nillable="true" type="tns:RTrips1C"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetTripsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripsResult" type="tns:ArrayOfRTrips1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsBatch">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="requests" type="tns:ArrayOfRTripRequest"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfRTripRequest">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripRequest" nillable="true" type="tns:RTripRequest"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTripRequest">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="IsMain" type="s:boolean"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="onlyTotal" type="s:boolean"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="areaIDs" type="tns:ArrayOfGuid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="geofenceIDs" type="tns:ArrayOfGuid"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetTripsBatchResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripsBatchResult" type="tns:ArrayOfRTrips1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsTotal">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsTotalResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripsTotalResult" type="tns:ArrayOfRTrips1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsByPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="requests" type="tns:ArrayOfRTripRequest"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsByPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripsByPeriodResult" type="tns:ArrayOfRTrips1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsMobileCheckpoints">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsMobileCheckpointsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripsMobileCheckpointsResult" type="tns:ArrayOfRTrips1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsArea">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="areaIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsAreaResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripsAreaResult" type="tns:ArrayOfRTrips1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsAreaTotal">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="areaIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="tripTotalParams" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsAreaTotalResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripsAreaTotalResult" type="tns:ArrayOfRTrips1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsCustom">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="geofences" type="tns:ArrayOfRGeoFence"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripsCustomResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripsCustomResult" type="tns:ArrayOfRTrips1C"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetTripTables">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="schemaID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="deviceIDs" type="tns:ArrayOfGuid"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="onlineParams" type="tns:ArrayOfString"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="tripSplitterIndex" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="RTripTables">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Serial" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Trips" type="tns:ArrayOfRTripTableItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripTableItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripTableItem" nillable="true" type="tns:RTripTableItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTripTableItem">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Index" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="SD" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ED" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="PointStart" type="tns:RPoint"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="PointEnd" type="tns:RPoint"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="DT" type="tns:ArrayOfDateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfRTripTableValues"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripTableValues">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripTableValues" nillable="true" type="tns:RTripTableValues"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="RTripTableValues">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:RBaseParameterValue">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfAnyType"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfRTripTables">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="RTripTables" nillable="true" type="tns:RTripTables"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetTripTablesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetTripTablesResult" type="tns:ArrayOfRTripTables"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+            <s:simpleType name="guid">
+                <s:restriction base="s:string">
+                    <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+                </s:restriction>
+            </s:simpleType>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="TestSoapIn">
+        <wsdl:part name="parameters" element="tns:Test"/>
+    </wsdl:message>
+    <wsdl:message name="TestSoapOut">
+        <wsdl:part name="parameters" element="tns:TestResponse"/>
+    </wsdl:message>
+    <wsdl:message name="Test2SoapIn">
+        <wsdl:part name="parameters" element="tns:Test2"/>
+    </wsdl:message>
+    <wsdl:message name="Test2SoapOut">
+        <wsdl:part name="parameters" element="tns:Test2Response"/>
+    </wsdl:message>
+    <wsdl:message name="UserDeleteSoapIn">
+        <wsdl:part name="parameters" element="tns:UserDelete"/>
+    </wsdl:message>
+    <wsdl:message name="UserDeleteSoapOut">
+        <wsdl:part name="parameters" element="tns:UserDeleteResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumRolesSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumRoles"/>
+    </wsdl:message>
+    <wsdl:message name="EnumRolesSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumRolesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumUsersSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumUsers"/>
+    </wsdl:message>
+    <wsdl:message name="EnumUsersSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumUsersResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumUsersAllSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumUsersAll"/>
+    </wsdl:message>
+    <wsdl:message name="EnumUsersAllSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumUsersAllResponse"/>
+    </wsdl:message>
+    <wsdl:message name="OTLCreateSoapIn">
+        <wsdl:part name="parameters" element="tns:OTLCreate"/>
+    </wsdl:message>
+    <wsdl:message name="OTLCreateSoapOut">
+        <wsdl:part name="parameters" element="tns:OTLCreateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="OTLDeleteSoapIn">
+        <wsdl:part name="parameters" element="tns:OTLDelete"/>
+    </wsdl:message>
+    <wsdl:message name="OTLDeleteSoapOut">
+        <wsdl:part name="parameters" element="tns:OTLDeleteResponse"/>
+    </wsdl:message>
+    <wsdl:message name="UserUpdateSoapIn">
+        <wsdl:part name="parameters" element="tns:UserUpdate"/>
+    </wsdl:message>
+    <wsdl:message name="UserUpdateSoapOut">
+        <wsdl:part name="parameters" element="tns:UserUpdateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumDevicesSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumDevices"/>
+    </wsdl:message>
+    <wsdl:message name="EnumDevicesSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumDevicesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumDriversSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumDrivers"/>
+    </wsdl:message>
+    <wsdl:message name="EnumDriversSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumDriversResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumGeoFencesSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumGeoFences"/>
+    </wsdl:message>
+    <wsdl:message name="EnumGeoFencesSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumGeoFencesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumImplementsSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumImplements"/>
+    </wsdl:message>
+    <wsdl:message name="EnumImplementsSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumImplementsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumParametersSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumParameters"/>
+    </wsdl:message>
+    <wsdl:message name="EnumParametersSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumParametersResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumSchemasSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumSchemas"/>
+    </wsdl:message>
+    <wsdl:message name="EnumSchemasSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumSchemasResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumStatusesSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumStatuses"/>
+    </wsdl:message>
+    <wsdl:message name="EnumStatusesSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumStatusesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetDataRangesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetDataRanges"/>
+    </wsdl:message>
+    <wsdl:message name="GetDataRangesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetDataRangesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetDevicesInfoSoapIn">
+        <wsdl:part name="parameters" element="tns:GetDevicesInfo"/>
+    </wsdl:message>
+    <wsdl:message name="GetDevicesInfoSoapOut">
+        <wsdl:part name="parameters" element="tns:GetDevicesInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetGeofencesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetGeofences"/>
+    </wsdl:message>
+    <wsdl:message name="GetGeofencesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetGeofencesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetOnlineInfoSoapIn">
+        <wsdl:part name="parameters" element="tns:GetOnlineInfo"/>
+    </wsdl:message>
+    <wsdl:message name="GetOnlineInfoSoapOut">
+        <wsdl:part name="parameters" element="tns:GetOnlineInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetOnlineInfoAllSoapIn">
+        <wsdl:part name="parameters" element="tns:GetOnlineInfoAll"/>
+    </wsdl:message>
+    <wsdl:message name="GetOnlineInfoAllSoapOut">
+        <wsdl:part name="parameters" element="tns:GetOnlineInfoAllResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetRouteSoapIn">
+        <wsdl:part name="parameters" element="tns:GetRoute"/>
+    </wsdl:message>
+    <wsdl:message name="GetRouteSoapOut">
+        <wsdl:part name="parameters" element="tns:GetRouteResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetStageSoapIn">
+        <wsdl:part name="parameters" element="tns:GetStage"/>
+    </wsdl:message>
+    <wsdl:message name="GetStageSoapOut">
+        <wsdl:part name="parameters" element="tns:GetStageResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTrackSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTrack"/>
+    </wsdl:message>
+    <wsdl:message name="GetTrackSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTrackResponse"/>
+    </wsdl:message>
+    <wsdl:message name="MRuleDeleteSoapIn">
+        <wsdl:part name="parameters" element="tns:MRuleDelete"/>
+    </wsdl:message>
+    <wsdl:message name="MRuleDeleteSoapOut">
+        <wsdl:part name="parameters" element="tns:MRuleDeleteResponse"/>
+    </wsdl:message>
+    <wsdl:message name="MRuleUpdateSoapIn">
+        <wsdl:part name="parameters" element="tns:MRuleUpdate"/>
+    </wsdl:message>
+    <wsdl:message name="MRuleUpdateSoapOut">
+        <wsdl:part name="parameters" element="tns:MRuleUpdateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetNotesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetNotes"/>
+    </wsdl:message>
+    <wsdl:message name="GetNotesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetNotesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPropertiesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetProperties"/>
+    </wsdl:message>
+    <wsdl:message name="GetPropertiesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetPropertiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetGFPropertiesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetGFProperties"/>
+    </wsdl:message>
+    <wsdl:message name="GetGFPropertiesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetGFPropertiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetDriverPropertiesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetDriverProperties"/>
+    </wsdl:message>
+    <wsdl:message name="GetDriverPropertiesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetDriverPropertiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetImplementPropertiesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetImplementProperties"/>
+    </wsdl:message>
+    <wsdl:message name="GetImplementPropertiesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetImplementPropertiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPropertySoapIn">
+        <wsdl:part name="parameters" element="tns:GetProperty"/>
+    </wsdl:message>
+    <wsdl:message name="GetPropertySoapOut">
+        <wsdl:part name="parameters" element="tns:GetPropertyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetGFPropertySoapIn">
+        <wsdl:part name="parameters" element="tns:GetGFProperty"/>
+    </wsdl:message>
+    <wsdl:message name="GetGFPropertySoapOut">
+        <wsdl:part name="parameters" element="tns:GetGFPropertyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetDriverPropertySoapIn">
+        <wsdl:part name="parameters" element="tns:GetDriverProperty"/>
+    </wsdl:message>
+    <wsdl:message name="GetDriverPropertySoapOut">
+        <wsdl:part name="parameters" element="tns:GetDriverPropertyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetImplementPropertySoapIn">
+        <wsdl:part name="parameters" element="tns:GetImplementProperty"/>
+    </wsdl:message>
+    <wsdl:message name="GetImplementPropertySoapOut">
+        <wsdl:part name="parameters" element="tns:GetImplementPropertyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SetPropertiesSoapIn">
+        <wsdl:part name="parameters" element="tns:SetProperties"/>
+    </wsdl:message>
+    <wsdl:message name="SetPropertiesSoapOut">
+        <wsdl:part name="parameters" element="tns:SetPropertiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SetGFPropertiesSoapIn">
+        <wsdl:part name="parameters" element="tns:SetGFProperties"/>
+    </wsdl:message>
+    <wsdl:message name="SetGFPropertiesSoapOut">
+        <wsdl:part name="parameters" element="tns:SetGFPropertiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SetDriverPropertiesSoapIn">
+        <wsdl:part name="parameters" element="tns:SetDriverProperties"/>
+    </wsdl:message>
+    <wsdl:message name="SetDriverPropertiesSoapOut">
+        <wsdl:part name="parameters" element="tns:SetDriverPropertiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SetImplementPropertiesSoapIn">
+        <wsdl:part name="parameters" element="tns:SetImplementProperties"/>
+    </wsdl:message>
+    <wsdl:message name="SetImplementPropertiesSoapOut">
+        <wsdl:part name="parameters" element="tns:SetImplementPropertiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SetPropertySoapIn">
+        <wsdl:part name="parameters" element="tns:SetProperty"/>
+    </wsdl:message>
+    <wsdl:message name="SetPropertySoapOut">
+        <wsdl:part name="parameters" element="tns:SetPropertyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SetGFPropertySoapIn">
+        <wsdl:part name="parameters" element="tns:SetGFProperty"/>
+    </wsdl:message>
+    <wsdl:message name="SetGFPropertySoapOut">
+        <wsdl:part name="parameters" element="tns:SetGFPropertyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SetDriverPropertySoapIn">
+        <wsdl:part name="parameters" element="tns:SetDriverProperty"/>
+    </wsdl:message>
+    <wsdl:message name="SetDriverPropertySoapOut">
+        <wsdl:part name="parameters" element="tns:SetDriverPropertyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SetImplementPropertySoapIn">
+        <wsdl:part name="parameters" element="tns:SetImplementProperty"/>
+    </wsdl:message>
+    <wsdl:message name="SetImplementPropertySoapOut">
+        <wsdl:part name="parameters" element="tns:SetImplementPropertyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumReportsSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumReports"/>
+    </wsdl:message>
+    <wsdl:message name="EnumReportsSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumReportsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumReportSchedulesSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumReportSchedules"/>
+    </wsdl:message>
+    <wsdl:message name="EnumReportSchedulesSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumReportSchedulesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetReportsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetReports"/>
+    </wsdl:message>
+    <wsdl:message name="GetReportsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetReportsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetReportSoapIn">
+        <wsdl:part name="parameters" element="tns:GetReport"/>
+    </wsdl:message>
+    <wsdl:message name="GetReportSoapOut">
+        <wsdl:part name="parameters" element="tns:GetReportResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EnumTasksSoapIn">
+        <wsdl:part name="parameters" element="tns:EnumTasks"/>
+    </wsdl:message>
+    <wsdl:message name="EnumTasksSoapOut">
+        <wsdl:part name="parameters" element="tns:EnumTasksResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripItemsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripItems"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripItemsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripItemsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTrips"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsBatchSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripsBatch"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsBatchSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripsBatchResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsTotalSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripsTotal"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsTotalSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripsTotalResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsByPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripsByPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsByPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripsByPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsMobileCheckpointsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripsMobileCheckpoints"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsMobileCheckpointsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripsMobileCheckpointsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsAreaSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripsArea"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsAreaSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripsAreaResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsAreaTotalSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripsAreaTotal"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsAreaTotalSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripsAreaTotalResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsCustomSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripsCustom"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripsCustomSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripsCustomResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripTablesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetTripTables"/>
+    </wsdl:message>
+    <wsdl:message name="GetTripTablesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetTripTablesResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="AutoGRAPHSvc1CSoap">
+        <wsdl:operation name="Test">
+            <wsdl:input message="tns:TestSoapIn"/>
+            <wsdl:output message="tns:TestSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="Test2">
+            <wsdl:input message="tns:Test2SoapIn"/>
+            <wsdl:output message="tns:Test2SoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="UserDelete">
+            <wsdl:input message="tns:UserDeleteSoapIn"/>
+            <wsdl:output message="tns:UserDeleteSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumRoles">
+            <wsdl:input message="tns:EnumRolesSoapIn"/>
+            <wsdl:output message="tns:EnumRolesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumUsers">
+            <wsdl:input message="tns:EnumUsersSoapIn"/>
+            <wsdl:output message="tns:EnumUsersSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumUsersAll">
+            <wsdl:input message="tns:EnumUsersAllSoapIn"/>
+            <wsdl:output message="tns:EnumUsersAllSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="OTLCreate">
+            <wsdl:input message="tns:OTLCreateSoapIn"/>
+            <wsdl:output message="tns:OTLCreateSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="OTLDelete">
+            <wsdl:input message="tns:OTLDeleteSoapIn"/>
+            <wsdl:output message="tns:OTLDeleteSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="UserUpdate">
+            <wsdl:input message="tns:UserUpdateSoapIn"/>
+            <wsdl:output message="tns:UserUpdateSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumDevices">
+            <wsdl:input message="tns:EnumDevicesSoapIn"/>
+            <wsdl:output message="tns:EnumDevicesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumDrivers">
+            <wsdl:input message="tns:EnumDriversSoapIn"/>
+            <wsdl:output message="tns:EnumDriversSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumGeoFences">
+            <wsdl:input message="tns:EnumGeoFencesSoapIn"/>
+            <wsdl:output message="tns:EnumGeoFencesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumImplements">
+            <wsdl:input message="tns:EnumImplementsSoapIn"/>
+            <wsdl:output message="tns:EnumImplementsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumParameters">
+            <wsdl:input message="tns:EnumParametersSoapIn"/>
+            <wsdl:output message="tns:EnumParametersSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumSchemas">
+            <wsdl:input message="tns:EnumSchemasSoapIn"/>
+            <wsdl:output message="tns:EnumSchemasSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumStatuses">
+            <wsdl:input message="tns:EnumStatusesSoapIn"/>
+            <wsdl:output message="tns:EnumStatusesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetDataRanges">
+            <wsdl:input message="tns:GetDataRangesSoapIn"/>
+            <wsdl:output message="tns:GetDataRangesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetDevicesInfo">
+            <wsdl:input message="tns:GetDevicesInfoSoapIn"/>
+            <wsdl:output message="tns:GetDevicesInfoSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetGeofences">
+            <wsdl:input message="tns:GetGeofencesSoapIn"/>
+            <wsdl:output message="tns:GetGeofencesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetOnlineInfo">
+            <wsdl:input message="tns:GetOnlineInfoSoapIn"/>
+            <wsdl:output message="tns:GetOnlineInfoSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetOnlineInfoAll">
+            <wsdl:input message="tns:GetOnlineInfoAllSoapIn"/>
+            <wsdl:output message="tns:GetOnlineInfoAllSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetRoute">
+            <wsdl:input message="tns:GetRouteSoapIn"/>
+            <wsdl:output message="tns:GetRouteSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetStage">
+            <wsdl:input message="tns:GetStageSoapIn"/>
+            <wsdl:output message="tns:GetStageSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTrack">
+            <wsdl:input message="tns:GetTrackSoapIn"/>
+            <wsdl:output message="tns:GetTrackSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="MRuleDelete">
+            <wsdl:input message="tns:MRuleDeleteSoapIn"/>
+            <wsdl:output message="tns:MRuleDeleteSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="MRuleUpdate">
+            <wsdl:input message="tns:MRuleUpdateSoapIn"/>
+            <wsdl:output message="tns:MRuleUpdateSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetNotes">
+            <wsdl:input message="tns:GetNotesSoapIn"/>
+            <wsdl:output message="tns:GetNotesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetProperties">
+            <wsdl:input message="tns:GetPropertiesSoapIn"/>
+            <wsdl:output message="tns:GetPropertiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetGFProperties">
+            <wsdl:input message="tns:GetGFPropertiesSoapIn"/>
+            <wsdl:output message="tns:GetGFPropertiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetDriverProperties">
+            <wsdl:input message="tns:GetDriverPropertiesSoapIn"/>
+            <wsdl:output message="tns:GetDriverPropertiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetImplementProperties">
+            <wsdl:input message="tns:GetImplementPropertiesSoapIn"/>
+            <wsdl:output message="tns:GetImplementPropertiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetProperty">
+            <wsdl:input message="tns:GetPropertySoapIn"/>
+            <wsdl:output message="tns:GetPropertySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetGFProperty">
+            <wsdl:input message="tns:GetGFPropertySoapIn"/>
+            <wsdl:output message="tns:GetGFPropertySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetDriverProperty">
+            <wsdl:input message="tns:GetDriverPropertySoapIn"/>
+            <wsdl:output message="tns:GetDriverPropertySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetImplementProperty">
+            <wsdl:input message="tns:GetImplementPropertySoapIn"/>
+            <wsdl:output message="tns:GetImplementPropertySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetProperties">
+            <wsdl:input message="tns:SetPropertiesSoapIn"/>
+            <wsdl:output message="tns:SetPropertiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetGFProperties">
+            <wsdl:input message="tns:SetGFPropertiesSoapIn"/>
+            <wsdl:output message="tns:SetGFPropertiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetDriverProperties">
+            <wsdl:input message="tns:SetDriverPropertiesSoapIn"/>
+            <wsdl:output message="tns:SetDriverPropertiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetImplementProperties">
+            <wsdl:input message="tns:SetImplementPropertiesSoapIn"/>
+            <wsdl:output message="tns:SetImplementPropertiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetProperty">
+            <wsdl:input message="tns:SetPropertySoapIn"/>
+            <wsdl:output message="tns:SetPropertySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetGFProperty">
+            <wsdl:input message="tns:SetGFPropertySoapIn"/>
+            <wsdl:output message="tns:SetGFPropertySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetDriverProperty">
+            <wsdl:input message="tns:SetDriverPropertySoapIn"/>
+            <wsdl:output message="tns:SetDriverPropertySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetImplementProperty">
+            <wsdl:input message="tns:SetImplementPropertySoapIn"/>
+            <wsdl:output message="tns:SetImplementPropertySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumReports">
+            <wsdl:input message="tns:EnumReportsSoapIn"/>
+            <wsdl:output message="tns:EnumReportsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumReportSchedules">
+            <wsdl:input message="tns:EnumReportSchedulesSoapIn"/>
+            <wsdl:output message="tns:EnumReportSchedulesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetReports">
+            <wsdl:input message="tns:GetReportsSoapIn"/>
+            <wsdl:output message="tns:GetReportsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetReport">
+            <wsdl:input message="tns:GetReportSoapIn"/>
+            <wsdl:output message="tns:GetReportSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="EnumTasks">
+            <wsdl:input message="tns:EnumTasksSoapIn"/>
+            <wsdl:output message="tns:EnumTasksSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripItems">
+            <wsdl:input message="tns:GetTripItemsSoapIn"/>
+            <wsdl:output message="tns:GetTripItemsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTrips">
+            <wsdl:input message="tns:GetTripsSoapIn"/>
+            <wsdl:output message="tns:GetTripsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsBatch">
+            <wsdl:input message="tns:GetTripsBatchSoapIn"/>
+            <wsdl:output message="tns:GetTripsBatchSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsTotal">
+            <wsdl:input message="tns:GetTripsTotalSoapIn"/>
+            <wsdl:output message="tns:GetTripsTotalSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsByPeriod">
+            <wsdl:input message="tns:GetTripsByPeriodSoapIn"/>
+            <wsdl:output message="tns:GetTripsByPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsMobileCheckpoints">
+            <wsdl:input message="tns:GetTripsMobileCheckpointsSoapIn"/>
+            <wsdl:output message="tns:GetTripsMobileCheckpointsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsArea">
+            <wsdl:input message="tns:GetTripsAreaSoapIn"/>
+            <wsdl:output message="tns:GetTripsAreaSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsAreaTotal">
+            <wsdl:input message="tns:GetTripsAreaTotalSoapIn"/>
+            <wsdl:output message="tns:GetTripsAreaTotalSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsCustom">
+            <wsdl:input message="tns:GetTripsCustomSoapIn"/>
+            <wsdl:output message="tns:GetTripsCustomSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripTables">
+            <wsdl:input message="tns:GetTripTablesSoapIn"/>
+            <wsdl:output message="tns:GetTripTablesSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AutoGRAPHSvc1CSoap" type="tns:AutoGRAPHSvc1CSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Test">
+            <soap:operation soapAction="http://tempuri.org/Test" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Test2">
+            <soap:operation soapAction="http://tempuri.org/Test2" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UserDelete">
+            <soap:operation soapAction="http://tempuri.org/UserDelete" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumRoles">
+            <soap:operation soapAction="http://tempuri.org/EnumRoles" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumUsers">
+            <soap:operation soapAction="http://tempuri.org/EnumUsers" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumUsersAll">
+            <soap:operation soapAction="http://tempuri.org/EnumUsersAll" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="OTLCreate">
+            <soap:operation soapAction="http://tempuri.org/OTLCreate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="OTLDelete">
+            <soap:operation soapAction="http://tempuri.org/OTLDelete" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UserUpdate">
+            <soap:operation soapAction="http://tempuri.org/UserUpdate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumDevices">
+            <soap:operation soapAction="http://tempuri.org/EnumDevices" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumDrivers">
+            <soap:operation soapAction="http://tempuri.org/EnumDrivers" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumGeoFences">
+            <soap:operation soapAction="http://tempuri.org/EnumGeoFences" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumImplements">
+            <soap:operation soapAction="http://tempuri.org/EnumImplements" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumParameters">
+            <soap:operation soapAction="http://tempuri.org/EnumParameters" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumSchemas">
+            <soap:operation soapAction="http://tempuri.org/EnumSchemas" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumStatuses">
+            <soap:operation soapAction="http://tempuri.org/EnumStatuses" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDataRanges">
+            <soap:operation soapAction="http://tempuri.org/GetDataRanges" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDevicesInfo">
+            <soap:operation soapAction="http://tempuri.org/GetDevicesInfo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGeofences">
+            <soap:operation soapAction="http://tempuri.org/GetGeofences" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetOnlineInfo">
+            <soap:operation soapAction="http://tempuri.org/GetOnlineInfo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetOnlineInfoAll">
+            <soap:operation soapAction="http://tempuri.org/GetOnlineInfoAll" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetRoute">
+            <soap:operation soapAction="http://tempuri.org/GetRoute" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStage">
+            <soap:operation soapAction="http://tempuri.org/GetStage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTrack">
+            <soap:operation soapAction="http://tempuri.org/GetTrack" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MRuleDelete">
+            <soap:operation soapAction="http://tempuri.org/MRuleDelete" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MRuleUpdate">
+            <soap:operation soapAction="http://tempuri.org/MRuleUpdate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetNotes">
+            <soap:operation soapAction="http://tempuri.org/GetNotes" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProperties">
+            <soap:operation soapAction="http://tempuri.org/GetProperties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGFProperties">
+            <soap:operation soapAction="http://tempuri.org/GetGFProperties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDriverProperties">
+            <soap:operation soapAction="http://tempuri.org/GetDriverProperties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetImplementProperties">
+            <soap:operation soapAction="http://tempuri.org/GetImplementProperties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProperty">
+            <soap:operation soapAction="http://tempuri.org/GetProperty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGFProperty">
+            <soap:operation soapAction="http://tempuri.org/GetGFProperty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDriverProperty">
+            <soap:operation soapAction="http://tempuri.org/GetDriverProperty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetImplementProperty">
+            <soap:operation soapAction="http://tempuri.org/GetImplementProperty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetProperties">
+            <soap:operation soapAction="http://tempuri.org/SetProperties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetGFProperties">
+            <soap:operation soapAction="http://tempuri.org/SetGFProperties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetDriverProperties">
+            <soap:operation soapAction="http://tempuri.org/SetDriverProperties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetImplementProperties">
+            <soap:operation soapAction="http://tempuri.org/SetImplementProperties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetProperty">
+            <soap:operation soapAction="http://tempuri.org/SetProperty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetGFProperty">
+            <soap:operation soapAction="http://tempuri.org/SetGFProperty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetDriverProperty">
+            <soap:operation soapAction="http://tempuri.org/SetDriverProperty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetImplementProperty">
+            <soap:operation soapAction="http://tempuri.org/SetImplementProperty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumReports">
+            <soap:operation soapAction="http://tempuri.org/EnumReports" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumReportSchedules">
+            <soap:operation soapAction="http://tempuri.org/EnumReportSchedules" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReports">
+            <soap:operation soapAction="http://tempuri.org/GetReports" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReport">
+            <soap:operation soapAction="http://tempuri.org/GetReport" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumTasks">
+            <soap:operation soapAction="http://tempuri.org/EnumTasks" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripItems">
+            <soap:operation soapAction="http://tempuri.org/GetTripItems" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTrips">
+            <soap:operation soapAction="http://tempuri.org/GetTrips" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsBatch">
+            <soap:operation soapAction="http://tempuri.org/GetTripsBatch" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsTotal">
+            <soap:operation soapAction="http://tempuri.org/GetTripsTotal" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsByPeriod">
+            <soap:operation soapAction="http://tempuri.org/GetTripsByPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsMobileCheckpoints">
+            <soap:operation soapAction="http://tempuri.org/GetTripsMobileCheckpoints" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsArea">
+            <soap:operation soapAction="http://tempuri.org/GetTripsArea" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsAreaTotal">
+            <soap:operation soapAction="http://tempuri.org/GetTripsAreaTotal" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsCustom">
+            <soap:operation soapAction="http://tempuri.org/GetTripsCustom" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripTables">
+            <soap:operation soapAction="http://tempuri.org/GetTripTables" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="AutoGRAPHSvc1CSoap12" type="tns:AutoGRAPHSvc1CSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Test">
+            <soap12:operation soapAction="http://tempuri.org/Test" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Test2">
+            <soap12:operation soapAction="http://tempuri.org/Test2" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UserDelete">
+            <soap12:operation soapAction="http://tempuri.org/UserDelete" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumRoles">
+            <soap12:operation soapAction="http://tempuri.org/EnumRoles" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumUsers">
+            <soap12:operation soapAction="http://tempuri.org/EnumUsers" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumUsersAll">
+            <soap12:operation soapAction="http://tempuri.org/EnumUsersAll" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="OTLCreate">
+            <soap12:operation soapAction="http://tempuri.org/OTLCreate" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="OTLDelete">
+            <soap12:operation soapAction="http://tempuri.org/OTLDelete" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UserUpdate">
+            <soap12:operation soapAction="http://tempuri.org/UserUpdate" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumDevices">
+            <soap12:operation soapAction="http://tempuri.org/EnumDevices" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumDrivers">
+            <soap12:operation soapAction="http://tempuri.org/EnumDrivers" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumGeoFences">
+            <soap12:operation soapAction="http://tempuri.org/EnumGeoFences" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumImplements">
+            <soap12:operation soapAction="http://tempuri.org/EnumImplements" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumParameters">
+            <soap12:operation soapAction="http://tempuri.org/EnumParameters" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumSchemas">
+            <soap12:operation soapAction="http://tempuri.org/EnumSchemas" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumStatuses">
+            <soap12:operation soapAction="http://tempuri.org/EnumStatuses" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDataRanges">
+            <soap12:operation soapAction="http://tempuri.org/GetDataRanges" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDevicesInfo">
+            <soap12:operation soapAction="http://tempuri.org/GetDevicesInfo" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGeofences">
+            <soap12:operation soapAction="http://tempuri.org/GetGeofences" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetOnlineInfo">
+            <soap12:operation soapAction="http://tempuri.org/GetOnlineInfo" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetOnlineInfoAll">
+            <soap12:operation soapAction="http://tempuri.org/GetOnlineInfoAll" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetRoute">
+            <soap12:operation soapAction="http://tempuri.org/GetRoute" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStage">
+            <soap12:operation soapAction="http://tempuri.org/GetStage" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTrack">
+            <soap12:operation soapAction="http://tempuri.org/GetTrack" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MRuleDelete">
+            <soap12:operation soapAction="http://tempuri.org/MRuleDelete" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MRuleUpdate">
+            <soap12:operation soapAction="http://tempuri.org/MRuleUpdate" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetNotes">
+            <soap12:operation soapAction="http://tempuri.org/GetNotes" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProperties">
+            <soap12:operation soapAction="http://tempuri.org/GetProperties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGFProperties">
+            <soap12:operation soapAction="http://tempuri.org/GetGFProperties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDriverProperties">
+            <soap12:operation soapAction="http://tempuri.org/GetDriverProperties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetImplementProperties">
+            <soap12:operation soapAction="http://tempuri.org/GetImplementProperties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProperty">
+            <soap12:operation soapAction="http://tempuri.org/GetProperty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGFProperty">
+            <soap12:operation soapAction="http://tempuri.org/GetGFProperty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDriverProperty">
+            <soap12:operation soapAction="http://tempuri.org/GetDriverProperty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetImplementProperty">
+            <soap12:operation soapAction="http://tempuri.org/GetImplementProperty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetProperties">
+            <soap12:operation soapAction="http://tempuri.org/SetProperties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetGFProperties">
+            <soap12:operation soapAction="http://tempuri.org/SetGFProperties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetDriverProperties">
+            <soap12:operation soapAction="http://tempuri.org/SetDriverProperties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetImplementProperties">
+            <soap12:operation soapAction="http://tempuri.org/SetImplementProperties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetProperty">
+            <soap12:operation soapAction="http://tempuri.org/SetProperty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetGFProperty">
+            <soap12:operation soapAction="http://tempuri.org/SetGFProperty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetDriverProperty">
+            <soap12:operation soapAction="http://tempuri.org/SetDriverProperty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetImplementProperty">
+            <soap12:operation soapAction="http://tempuri.org/SetImplementProperty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumReports">
+            <soap12:operation soapAction="http://tempuri.org/EnumReports" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumReportSchedules">
+            <soap12:operation soapAction="http://tempuri.org/EnumReportSchedules" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReports">
+            <soap12:operation soapAction="http://tempuri.org/GetReports" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReport">
+            <soap12:operation soapAction="http://tempuri.org/GetReport" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EnumTasks">
+            <soap12:operation soapAction="http://tempuri.org/EnumTasks" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripItems">
+            <soap12:operation soapAction="http://tempuri.org/GetTripItems" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTrips">
+            <soap12:operation soapAction="http://tempuri.org/GetTrips" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsBatch">
+            <soap12:operation soapAction="http://tempuri.org/GetTripsBatch" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsTotal">
+            <soap12:operation soapAction="http://tempuri.org/GetTripsTotal" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsByPeriod">
+            <soap12:operation soapAction="http://tempuri.org/GetTripsByPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsMobileCheckpoints">
+            <soap12:operation soapAction="http://tempuri.org/GetTripsMobileCheckpoints" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsArea">
+            <soap12:operation soapAction="http://tempuri.org/GetTripsArea" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsAreaTotal">
+            <soap12:operation soapAction="http://tempuri.org/GetTripsAreaTotal" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripsCustom">
+            <soap12:operation soapAction="http://tempuri.org/GetTripsCustom" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetTripTables">
+            <soap12:operation soapAction="http://tempuri.org/GetTripTables" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AutoGRAPHSvc1C">
+        <wsdl:port name="AutoGRAPHSvc1CSoap" binding="tns:AutoGRAPHSvc1CSoap">
+            <soap:address location="http://xn--l1a.xn----dtb1abmu.xn--p1ai/Service1c.asmx"/>
+        </wsdl:port>
+        <wsdl:port name="AutoGRAPHSvc1CSoap12" binding="tns:AutoGRAPHSvc1CSoap12">
+            <soap12:address location="http://xn--l1a.xn----dtb1abmu.xn--p1ai/Service1c.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
