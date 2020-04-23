@@ -8,6 +8,6 @@ import ru.tdv.soapclient.schemas.GetTripsTotalResponse;
 public class SOAPConnector extends WebServiceGatewaySupport {
 
 	public Object callWebService(String url, Object request){
-			return getWebServiceTemplate().marshalSendAndReceive(url, request);
+			return getWebServiceTemplate().marshalSendAndReceive(request, new SoapActionCallback("http://tempuri.org/EnumSchemas"));
 	}
 }

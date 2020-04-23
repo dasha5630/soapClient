@@ -26,18 +26,21 @@ public class Config {
 	client.DownloadString("http://localhost:8300/EnumSchemas?session="+session);
 
 	//get AG-TOKEN
+	//json
 http://localhost:8300/Login?UserName=demo&Password=demo	HttpURLConnection con = (HttpURLConnection) url.openConnection();
 	con.setRequestMethod("GET");
+
 	 */
 	@Bean
 	public SOAPConnector soapConnector(Jaxb2Marshaller marshaller) {
 		SOAPConnector client = new SOAPConnector();
-		client.setDefaultUri("http://м.тм-вол.рф/Accaunt/Login");
+		client.setDefaultUri("http://xn--l1a.xn----dtb1abmu.xn--p1ai/Service1C.asmx");
 		client.setMarshaller(marshaller);
 		client.setUnmarshaller(marshaller);
 
 		WebServiceTemplate template = client.getWebServiceTemplate();
 		template.setMessageSender(new AuthConfiguration());
+	//	client.setWebServiceTemplate(template);
 		return client;
 	}
 

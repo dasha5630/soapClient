@@ -12,14 +12,16 @@ public class AuthConfiguration extends HttpUrlConnectionMessageSender {
         protected void prepareConnection(HttpURLConnection connection)
                 throws IOException {
 
-/*            BASE64Encoder enc = new sun.misc.BASE64Encoder();
+          BASE64Encoder enc = new sun.misc.BASE64Encoder();
             String userpassword = "demo:demo";
             String encodedAuthorization = enc.encode( userpassword.getBytes() );
             connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
-            */
 
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("AG-TOKEN", );
+           // connection.setRequestProperty("Content-Type", "application/json");
+           // connection.setRequestProperty("AG-TOKEN", "");
+           // connection.setRequestProperty("SOAPAction", "\"http://tempuri.org/Enum\"");
+
             super.prepareConnection(connection);
+
         }
 }
