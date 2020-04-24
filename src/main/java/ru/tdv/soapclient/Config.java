@@ -16,21 +16,6 @@ public class Config {
 		return marshaller;
 	}
 
-
-	/*
-	WebClient client = new WebClient();
-	client.Headers["Content-Type"] = "application/json";
-	var session = client.DownloadString("http://localhost:8300/Login?UserName=demo&Password=demo").Trim('\"', '\"'); // метод GET
-
-	// далее обычная работа с JSON
-	client.DownloadString("http://localhost:8300/EnumSchemas?session="+session);
-
-	//get AG-TOKEN
-	//json
-http://localhost:8300/Login?UserName=demo&Password=demo	HttpURLConnection con = (HttpURLConnection) url.openConnection();
-	con.setRequestMethod("GET");
-
-	 */
 	@Bean
 	public SOAPConnector soapConnector(Jaxb2Marshaller marshaller) {
 		SOAPConnector client = new SOAPConnector();
@@ -40,7 +25,6 @@ http://localhost:8300/Login?UserName=demo&Password=demo	HttpURLConnection con = 
 
 		WebServiceTemplate template = client.getWebServiceTemplate();
 		template.setMessageSender(new AuthConfiguration());
-	//	client.setWebServiceTemplate(template);
 		return client;
 	}
 
