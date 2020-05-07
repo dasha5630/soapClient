@@ -5,8 +5,8 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 public class SOAPConnector extends WebServiceGatewaySupport {
 
-	public Object callWebService(String url, Object request){
+	public Object callWebService(Object request){
 		//todo: add parameter from request to SoapActionCallback
-		return getWebServiceTemplate().marshalSendAndReceive(request, new SoapActionCallback("http://tempuri.org/EnumSchemas"));
+		return getWebServiceTemplate().marshalSendAndReceive(request, new SoapActionCallback("http://tempuri.org/" + request.getClass().getSimpleName()));
 	}
 }
