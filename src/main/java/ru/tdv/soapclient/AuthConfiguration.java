@@ -13,7 +13,7 @@ public class AuthConfiguration extends HttpUrlConnectionMessageSender {
                 throws IOException {
 
           BASE64Encoder enc = new sun.misc.BASE64Encoder();
-            String userpassword = "demo:demo";
+            String userpassword = SoapClientApplication.login + ":" + SoapClientApplication.password;
             String encodedAuthorization = enc.encode( userpassword.getBytes() );
             connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
 
